@@ -21,7 +21,7 @@ class _HomepageState extends State<Homepage> {
   }
 
   fetchData() async {
-    var res = await http.get(url);
+    var res = await 
   }
 
   @override
