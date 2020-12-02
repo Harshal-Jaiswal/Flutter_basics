@@ -2,8 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basics/pages/home_page.dart';
 import 'package:flutter_basics/pages/login_page.dart';
+import 'package:flutter_basics/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+Future main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Constants.pref = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
 
@@ -13,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: LoginPage(),
+        home: Constants.pref.getBool('loggedIn') == true ? Homepage(): LoginPage() ,
         theme: ThemeData(
           primaryColor: Colors.purple,
         ),
