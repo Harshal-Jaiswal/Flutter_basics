@@ -16,7 +16,13 @@ class MyApp extends StatelessWidget {
         home: LoginPage(),
         theme: ThemeData(
           primaryColor: Colors.purple,
-        ));
+        ),
+        routes: {
+          
+          LoginPage.routeName : (context)=> LoginPage(),
+          Homepage.routeName : (context)=> Homepage(),
+        },     
+      );
   }
 }
 

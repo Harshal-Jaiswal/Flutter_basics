@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_basics/drawer.dart';
-import 'package:http/http.dart' as http; 
+import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Homepage extends StatefulWidget {
+  static const String routeName = '/Home';
   @override
   _HomepageState createState() => _HomepageState();
 }
@@ -26,9 +27,7 @@ class _HomepageState extends State<Homepage> {
   fetchData() async {
     var res = await http.get(url);
     data = jsonDecode(res.body);
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   @override
@@ -41,21 +40,29 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.grey,
-      appBar: AppBar(title: Text('basic App')),
+      appBar: AppBar(
+        title: Text('basic App'),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.exit_to_app),
+              onPressed: () {
+                Navigator.pop(context);
+              })
+        ],
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: data != null
-              ? ListView.builder( 
-                itemBuilder: (context, index){
-                  return ListTile(
-                    title: Text(data[index]['title']),
-                    subtitle:  Text('ID: ${data[index]['id']}'),
-                    leading: Image.network( data[index]['url'] ),
-                  );
-                },
-                itemCount: data.length,
-                
+              ? ListView.builder(
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(data[index]['title']),
+                      subtitle: Text('ID: ${data[index]['id']}'),
+                      leading: Image.network(data[index]['url']),
+                    );
+                  },
+                  itemCount: data.length,
                 )
               : Center(child: CircularProgressIndicator()),
           // SingleChildScrollView(
