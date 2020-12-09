@@ -1,4 +1,4 @@
-# flutter_project_x
+# projext_news
 
 A new Flutter project.
 
