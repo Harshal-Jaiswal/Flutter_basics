@@ -9,7 +9,7 @@ class Screen0 extends StatelessWidget {
         title: Text('Screen 0'),
       ),
       body: Center(
-        child: Column(
+        child: Column( 
           children: <Widget>[
             RaisedButton(
               color: Colors.red,
