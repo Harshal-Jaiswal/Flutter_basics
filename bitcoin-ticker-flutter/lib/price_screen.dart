@@ -11,6 +11,24 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
+  String currencyValue;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getCurrrencyValue(selectedCurrency);
+  }
+
+  void getCurrrencyValue(String val) async {
+    CoinData coinData = CoinData();
+
+    var data = await coinData.getCoinData(val);
+    // print(data['rate']);
+    setState(() {
+      currencyValue = data['rate'].toString();
+    });
+  }
 
   List<DropdownMenuItem> getDropdownItems() {
     List<DropdownMenuItem<String>> dropDownItems = [];
@@ -27,7 +45,7 @@ class _PriceScreenState extends State<PriceScreen> {
 
   List<Widget> getPickerItems() {
     List<Text> pickerItems = [];
-    
+
     for (String curr in currenciesList) {
       pickerItems.add(Text(curr));
     }
@@ -55,7 +73,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = ? USD',
+                  '1 BTC = $currencyValue $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
@@ -73,7 +91,10 @@ class _PriceScreenState extends State<PriceScreen> {
               child: CupertinoPicker(
                 itemExtent: 32.0,
                 onSelectedItemChanged: (selectedIndex) {
-                  print(selectedIndex);
+                  getCurrrencyValue(currenciesList[selectedIndex]);
+                  setState(() {
+                    selectedCurrency = currenciesList[selectedIndex];
+                  });
                 },
                 children: getPickerItems(),
               )
