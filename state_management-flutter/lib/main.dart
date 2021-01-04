@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:state_management_examples/screens/task_screen.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<Data>(
-      builder: (context) => Data(),
-      child: MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: MyText(),
-          ),
-          body: Level1(),
-        ),
-      ),
+    return MaterialApp(
+      home: TaskScreen(),
     );
+    // ChangeNotifierProvider<Data>(
+    //   builder: (context) => Data(),
+    //   child: MaterialApp(
+    //     home: Scaffold(
+    //       appBar: AppBar(
+    //         title: MyText(),
+    //       ),
+    //       body: Level1(),
+    //     ),
+    //   ),
+    // );
   }
 }
 
