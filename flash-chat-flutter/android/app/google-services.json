@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "444571914467",
+    "project_id": "flash-chats-41686",
+    "storage_bucket": "flash-chats-41686.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444571914467:android:09d4932df171b0d09c35d6",
+        "android_client_info": {
+          "package_name": "co.turingtech.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444571914467-o6nu3vkec2hsqk6q7eef2ssk0cqoa717.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3zH587NEFiCQmEEoGHYRib1j1qr6TEUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444571914467-o6nu3vkec2hsqk6q7eef2ssk0cqoa717.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

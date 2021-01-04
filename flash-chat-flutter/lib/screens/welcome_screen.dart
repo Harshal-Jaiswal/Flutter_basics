@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flash_chat/components/rounded_button.dart';
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
@@ -18,9 +19,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   void initState() {
     super.initState();
+    Firebase.initializeApp();
     controller = AnimationController(
       duration: Duration(seconds: 1),
       vsync: this,
+
       // upperBound: 100,
       // TickerProvider: this,
     );
