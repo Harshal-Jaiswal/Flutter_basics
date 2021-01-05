@@ -1,15 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/models/task.dart';
+import 'package:todoey/screens/add_task_screen.dart';
 import 'package:todoey/widgets/task_list.dart';
 
-class TaskScreen extends StatelessWidget {
-  const TaskScreen({Key key}) : super(key: key);
+class TaskScreen extends StatefulWidget {
+  // Widget buildButtonSheet(BuildContext context) {
+  //   return Container(
+  //     child:
+  //   );
+  // }
+
+  @override
+  _TaskScreenState createState() => _TaskScreenState();
+}
+
+class _TaskScreenState extends State<TaskScreen> {
+  List<Task> tasks = [
+    Task(name: 'buy milk'),
+    Task(name: 'buy eggs'),
+    Task(name: 'buy bread'),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              // builder:
+              builder: (context) => SingleChildScrollView(
+                  child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: AddTask(
+                        addTaskCallback: (newText) {
+                          print(newText);
+                          setState(() {
+                            tasks.add(Task(name: newText));
+                          });
+                          Navigator.pop(context);
+                        },
+                      ))));
+        },
         child: Icon(Icons.add),
         backgroundColor: Colors.lightBlueAccent,
       ),
@@ -64,7 +99,9 @@ class TaskScreen extends StatelessWidget {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20)),
               ),
-              child: TaskList(),
+              child: TaskList(
+                tasks: tasks,
+              ),
             ),
           )
         ],
@@ -72,6 +109,3 @@ class TaskScreen extends StatelessWidget {
     );
   }
 }
-
-
-
