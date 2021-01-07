@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/task_data.dart';
 import 'package:todoey/screens/add_task_screen.dart';
 import 'package:todoey/widgets/task_list.dart';
 
-class TaskScreen extends StatefulWidget {
+class TaskScreen extends StatelessWidget {
   // Widget buildButtonSheet(BuildContext context) {
   //   return Container(
   //     child:
   //   );
   // }
 
-  @override
-  _TaskScreenState createState() => _TaskScreenState();
-}
+//   @override
+//   _TaskScreenState createState() => _TaskScreenState();
+// }
 
-class _TaskScreenState extends State<TaskScreen> {
-  List<Task> tasks = [
-    Task(name: 'buy milk'),
-    Task(name: 'buy eggs'),
-    Task(name: 'buy bread'),
-  ];
-
+// class _TaskScreenState extends State<TaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,14 +31,14 @@ class _TaskScreenState extends State<TaskScreen> {
                       padding: EdgeInsets.only(
                           bottom: MediaQuery.of(context).viewInsets.bottom),
                       child: AddTask(
-                        addTaskCallback: (newText) {
-                          print(newText);
-                          setState(() {
-                            tasks.add(Task(name: newText));
-                          });
-                          Navigator.pop(context);
-                        },
-                      ))));
+                          // addTaskCallback: (newText) {
+                          //   print(newText);
+                          //   // setState(() {
+                          //   //   tasks.add(Task(name: newText));
+                          //   // });
+                          //   Navigator.pop(context);
+                          // },
+                          ))));
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.lightBlueAccent,
@@ -82,7 +77,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   ),
                 ),
                 Text(
-                  '12 Tasks',
+                  '${Provider.of<TaskData>(context, listen: false).taskCount} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -99,9 +94,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20)),
               ),
-              child: TaskList(
-                tasks: tasks,
-              ),
+              child: TaskList(),
             ),
           )
         ],
